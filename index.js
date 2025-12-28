@@ -4,8 +4,6 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 const path = require('path')
 const cors = require('cors')
-require('dotenv').config();
-const uri = process.env.MONGODB_URI
 
 const app = express()
 
@@ -27,7 +25,7 @@ app.use('/api/auth', require('./routes/auth'))
 app.use('/api/score', require('./routes/scores'))
 
 const PORT = config.get('port') || 5000
-const MONGO_URL = config.get(uri);
+const MONGO_URL = config.get('mongoURL');
 
 async function start() {
     try {
