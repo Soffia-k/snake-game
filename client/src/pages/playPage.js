@@ -41,7 +41,6 @@ export const PlayPage = () => {
         const endGame = async () => {
             clearInterval(intervalId)
             
-            // Сохраняем очки
             const userData = JSON.parse(localStorage.getItem('userData') || '{}')
             const token = userData.token
             const currentUserId = userData.userId
@@ -55,7 +54,6 @@ export const PlayPage = () => {
                 }
             }
             
-            // Показываем сообщение о конце игры
             ctx.font = "40px Arial"
             ctx.fillStyle = "Black"
             ctx.textAlign = "center"

@@ -23,8 +23,8 @@ router.post(
         }
 
         const {username, password} = req.body
-        const check = await User.findOne({ username })
-        if (check){
+        const userExists = await User.findOne({ username })
+        if (userExists){
             return res.status(400).json({ message: 'This username is already taken' })
         }
         const hashPass = await bcrypt.hash(password, 12)
@@ -55,23 +55,23 @@ router.post(
     }
 
     const {username, password} = req.body
-    const user = await User.findOne({ username })
-    if (!user){
+    const userExists = await User.findOne({ username })
+    if (!userExists){
         return res.status(400).json({ message: 'User not found' })
     }
         
-    const match = await bcrypt.compare(password, user.password)
+    const match = await bcrypt.compare(password, userExists.password)
     if (!match){
         return res.status(400).json({ message: 'Wrong password. Please, try again.' })
     }
 
     const token = jwt.sign(
-        { userId: user.id },
-        config.get(jwtS),
+        { userId: userExists.id },
+        config.get('jwtSecret'),
         { expiresIn: '1h' }
     )
 
-    res.json({ token, userId: user.id })
+    res.json({ token, userId: userExists.id })
 
     } catch(e){
         res.status(500).json({ message: 'Oops! Something went wrong. Please, try again later' })
