@@ -6,4 +6,4 @@ const schema = new Schema({
     scores: [{type: Types.ObjectId, ref: 'Score'}]
 })
 
-module.exports = model('User', schema);
+module.exports = model('User', schema)
