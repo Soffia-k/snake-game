@@ -1,0 +1,18 @@
+show users
+use snake_game
+use admin
+db.createuser({user: "snake", pwd: "12345", roles: [{role: "readWrite", db: "snake_game"}]
+use snake_game
+use admin
+// Проверьте
+})
+  roles: [{ role: "readWrite", db: "snake_game" }]
+  pwd: "app_password_123",  // Придумайте надёжный пароль
+  user: "snake_app",
+// Создайте пользователя с правами на базу snake_game
+show dbs
+db.createCollection("scores")
+db.createCollection("users")
+use snake_game
+show users
+show dbs
